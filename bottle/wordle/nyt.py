@@ -30,7 +30,8 @@ NORMAL_MODE: DifficultyMode = 0
 HARD_MODE: DifficultyMode = 1
 'The hard difficulty of a "New York Times" Wordle game.'
 
-dictionary = extract_dict('TODO: nyt-dict')
+dictionary = extract_dict('TODO: nyt-dict.txt')
+'The English dictionary defined by "New York Times."'
 
 
 class NYTWordle(Wordle):
@@ -98,8 +99,8 @@ class NYTWordle(Wordle):
         """
         Changes the difficulty of this game.
 
-        The game's difficulty cannot be changed if the mid-game. That is, the
-        player has already attempted a guess.
+        The game's difficulty cannot be changed mid-game. That is, the player
+        has already attempted a guess.
 
         :param mode: The difficulty mode to set.
 
