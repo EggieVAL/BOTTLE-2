@@ -17,7 +17,7 @@ Author: Eggie
 Version: 1.0.0
 """
 
-__all__ = ['Wordle']
+__all__ = ['Wordle', 'extract_dict']
 __version__ = '1.0.0'
 
 
@@ -25,6 +25,20 @@ from bottle.wordle.errors import (GuessLengthError, InvalidWordError,
                                   NoAttemptsError, NoError, WordleError)
 from bottle.wordle.simple import Hint, SimpleWordle
 from bottle.wordle.tile import BLACK
+
+
+def extract_dict(filename: str) -> set[str]:
+    """
+    Extracts words from a file to form a dictionary.
+
+    The `dictionary()` method does not check if the word is proper (e.g.
+    contains no spaces), so the file is expected to contain a valid word in
+    each line. The method will ignore empty lines and duplicate words.
+
+    :return: The dictionary of words from the provided file in the form of a
+             set of strings.
+    """
+    raise NotImplementedError
 
 
 class Wordle(SimpleWordle):
@@ -36,9 +50,9 @@ class Wordle(SimpleWordle):
     hidden word.
 
     In this version, there are a few restrictions on guesses: the player
-    must have attempts left to guess; the length of the guess be the same as
-    the length of the hidden word; the characters of each guess must be in the
-    set of valid characters, if not empty; and the guess must be in the
+    must have attempts left to guess; the length of the guess must be the same
+    as the length of the hidden word; the characters of each guess must be in
+    the set of valid characters, if not empty; and the guess must be in the
     dictionary, if not empty.
     """
 
@@ -56,9 +70,6 @@ class Wordle(SimpleWordle):
         This simulator has a set of rules, making the game more challenging and
         fun. These rules are imposed to restrict the player's guess, for
         example, a limited number of attempts.
-
-        Before providing the hidden word, the valid characters, and the
-        dictionary, note that the simulator will be case-sensitive.
 
         :param hidden_word: The word the player must guess to win.
 

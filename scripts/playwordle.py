@@ -21,7 +21,7 @@ def print_hint(hint: Hint) -> None:
     print(string + reset)
 
 
-def playwordle(wordle: Wordle):
+def playwordle(wordle: Wordle) -> None:
     while not wordle.has_won and wordle.num_attempts != wordle.max_attempts:
         guess = input('Enter your guess: ')
         try:
